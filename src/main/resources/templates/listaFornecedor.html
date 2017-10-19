@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+
+<section layout:fragment="listaFornecedor">
+	<div class="container-fluid">
+		<h2>Fornecedores</h2>
+
+		<table class="table table-striped">
+			<tr>
+				<th>#</th>
+				<th>Nome</th>
+				<th>CNPJ</th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr th:each="fornecedor : ${fornecedores}">
+				<td th:text="${fornecedor.codigo}"></td>
+				<td th:text="${fornecedor.nome}"></td>
+				<td th:text="${fornecedor.cnpj}"></td>
+				<td><a th:href="@{/fornecedor/{codigo}(codigo=${fornecedor.codigo})}">Editar</a></td>
+				<td><a href="#">Excluir</a></td>
+			</tr>
+		</table>
+	</div>
+</section>
+
+</html>

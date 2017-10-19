@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+
+<head>
+<title>Fornecedor</title>
+</head>
+
+	<div layout:fragment="cadastroFornecedor">
+	<div class="container">
+
+		<h2>Fornecedor</h2>
+		
+		<form th:action="@{/fornecedor}" method="POST" th:object="${fornecedor}">
+			<input type="hidden" th:field="*{codigo}" />
+			<div class="form-group">
+				<label for="nome">Nome:</label> <input id="nome" name="nome"
+					type="text" class="form-control" th:field="*{nome}" placeholder="Nome Fornecedor" />
+			</div>
+			<div class="form-group">
+				<label for="cnpj">CNPJ:</label> <input id="cnpj" name="cnpj" type="text" class="form-control" th:field="*{cnpj}" placeholder="00.000.000/0000-00"/>
+			</div>
+			<button class="btn btn-default">Salvar</button>
+		</form>
+	</div>
+</div>
+</html>
