@@ -6,6 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 @Entity
 public class Fornecedor implements Serializable {
@@ -15,7 +19,12 @@ public class Fornecedor implements Serializable {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long codigo;
+	
+	@NotEmpty(message = "Nome é obrigatório")
+	@Size(max = 60, message = "Tamanho máximo de 60 caracteres")
 	private String nome;
+	
+	@CNPJ(message = "CNPJ inválido")
 	private String cnpj;
 
 	public Long getCodigo() {

@@ -1,0 +1,14 @@
+.navbar-brand{
+	padding-top: 9px;
+}
+
+.btn-group{
+	padding-top: 9px;
+}
+
+#marca {
+	padding-top: 14px;
+	float: right;
+	font-size: 18px;
+	color: orange;
+}

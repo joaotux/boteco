@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.originmobi.boteco.filter.FornecedorFilter;
 import com.originmobi.boteco.model.Fornecedor;
 import com.originmobi.boteco.repository.FornecedorRepository;
 
@@ -23,6 +24,15 @@ public class FornecedorService {
 	
 	public void salvar(Fornecedor fornecedor){
 		fornecedores.save(fornecedor);
+	}
+	
+	public void remover(Long codigo){
+		fornecedores.delete(codigo);
+	}
+	
+	public List<Fornecedor> filter(FornecedorFilter filter){
+		String nome = filter.getNome() == null ? "%" : filter.getNome();
+		return fornecedores.findByNomeContaining(nome);
 	}
 
 }

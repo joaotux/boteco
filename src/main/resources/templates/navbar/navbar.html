@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#"> <img alt="Brand"
@@ -16,11 +16,25 @@
 				</button>
 				<ul class="dropdown-menu">
 					<li><a th:href="@{/fornecedor/novo}">Cadastor</a></li>
-					<li><a th:href="@{/fornecedor/lista}">Pesquisar</a></li>
+					<li><a th:href="@{/fornecedor}">Pesquisar</a></li>
 					<li role="separator" class="divider"></li>
 				</ul>
 			</div>
+			
+			<div class="btn-group">
+				<button type="button" class="btn btn-warning dropdown-toggle"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Produto <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a th:href="@{/fornecedor/novo}">Cadastor</a></li>
+					<li><a th:href="@{/fornecedor}">Pesquisar</a></li>
+					<li role="separator" class="divider"></li>
+				</ul>
+			</div>
+			
 		</div>
+			<div id="marca">Originmobi</div>
 	</div>
 </nav>
 </html>
