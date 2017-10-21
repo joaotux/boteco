@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+
+<section layout:fragment="formProduto">
+	<div class="container">
+	
+	
+		<form th:action="@{/produto}" method="POST" th:object="${produto}">
+		<!-- mensagens -->
+		<div layout:include="mensagens/mensagemSucesso"></div>	
+		<div layout:include="mensagens/mensagemErro"></div>
+		
+		<h2>Produto</h2>
+	
+			<input type="hidden" th:field="*{codigo}" />
+			<div class="form-group" th:classappend="${#fields.hasErrors('descricao')} ? has-error">
+				<label for="descricao">Descrição</label> <input class="form-control"
+					type="text" id="descricao" name="descricao" placeholder="Descrição" th:field="*{descricao}" />
+			</div>
+
+			<div class="form-group" th:classappend="${#fields.hasErrors('fornecedor')} ? has-error">
+				<label for="fornecedor">Fornecedor</label> <select id="fornecedor"
+					name="fornecedor" class="form-control">
+					<option th:each="fornecedor : ${todosFornecedores}"
+						th:value="${fornecedor.codigo}" th:text="${fornecedor.nome}" th:field="*{fornecedor}"></option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="valorCusto">Valor Custo</label> <input type="text"
+					class="form-control" id="valorCusto" name="valorCusto" th:field="*{valorCusto}" />
+			</div>
+
+			<div class="form-group" th:classappend="${#fields.hasErrors('valorVenda')} ? has-error">
+				<label for="valorVenda">Valor Venda</label> <input id="valorVenda"
+					type="text" class="form-control js-currency" name="valorVenda" th:field="*{valorVenda}"/>
+			</div>
+			
+			<input type="text" id="currency" />
+
+			<div class="form-group" th:classappend="${#fields.hasErrors('dataValidade')} ? has-error">
+				<label for="dataValidade">Data Valida</label> <input
+					id="dataValidade" type="text" class="form-control"
+					name="dataValidade" th:field="*{dataValidade}" data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="pt-BR" data-date-autoclose="true"
+					data-date-today-highlight="true"/>
+			</div>
+
+			<div class="form-group">
+				<label for="teorAlcoolico">Teor Alcoólico</label> <input
+					id="teorAlcoolico" type="text" class="form-control"
+					name="teorAlcoolico" th:field="*{teorAlcoolico}" />
+			</div>
+			<button type="submit" class="btn btn-warning">Salvar</button>
+		</form>
+	</div>
+</section>
+
+</html>

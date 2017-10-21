@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+
+<section layout:fragment="listaProdutos">
+	<div class="container-fluid">
+		<h2>Produtos</h2>
+
+		<table class="table table-striped">
+			<tr>
+				<th>#</th>
+				<th>Descrição</th>
+				<th>Fornecedor</th>
+				<th>Valor Custo</th>
+				<th>Valor Venda</th>
+				<th>Data Validade</th>
+				<th>Teor Alcoólico</th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr th:each="produto : ${produtos}">
+				<td th:text="${produto.codigo}"></td>
+				<td th:text="${produto.descricao}"></td>
+				<td th:text="${produto.fornecedor.nome}"></td>
+				<td th:text="${produto.valorCusto}"></td>
+				<td th:text="${produto.valorVenda}"></td>
+				<td th:text="${{produto.dataValidade}}"></td>
+				<td th:text="${produto.teorAlcoolico}"></td>
+				<td><a th:href="@{/produto/{codigo}(codigo=${produto.codigo})}">
+					<span class="glyphicon glyphicon-pencil"></span>
+				</a></td>
+				<td><a th:href="@{/produto/excluir/{codigo}(codigo=${produto.codigo})}">
+					<span class="glyphicon glyphicon-remove"></span>
+				</a></td>
+			</tr>
+		</table>
+	</div>
+</section>
+</html>
