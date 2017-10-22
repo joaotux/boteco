@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+
+<section layout:fragment="listaCliente">
+	
+	<div class="container">
+		<form action="/cliente" method="GET" th:object="${filter}">
+			<div class="input-group">
+				<input class="form-control" type="text" placeholder="Qual cliente você quer buscar?" autofocus="autofocus" th:field="*{nome}" />
+				<div class="input-group-btn">
+				<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="container-fluid">
+	<h2>Cliente</h2>
+		<table class="table table-striped">
+			<tr>
+				<th>#</th>
+				<th>Nome</th>
+				<th>CPF</th>
+				<th>Data Nacimento</th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr th:each="cliente : ${clientes}">
+				<td th:text="${cliente.codigo}"></td>
+				<td th:text="${cliente.nome}"></td>
+				<td th:text="${cliente.cpf}"></td>
+				<td th:text="${{cliente.dataNacimento}}"></td>
+				<td><a th:href="@{/cliente/{codigo}(codigo=${cliente.codigo})}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+				<td><a th:href="@{/cliente/excluir/{codigo}(codigo=${cliente.codigo})}"><span class="glyphicon glyphicon-remove"></span></a></td>
+			</tr>
+		</table>
+	</div>
+</section>
+</html>
