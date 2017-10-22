@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.originmobi.boteco.filter.ProdutoFilter;
 import com.originmobi.boteco.model.Produto;
 import com.originmobi.boteco.repository.ProdutoRepository;
 
@@ -31,6 +32,11 @@ public class ProdutoService {
 	
 	public void excluir(Long codigo){
 		produtos.delete(codigo);
+	}
+	
+	public List<Produto> filter(ProdutoFilter filter){
+		String descricao = filter.getDescricao() == null ? "%" : filter.getDescricao();
+		return produtos.findByDescricaoContaining(descricao);
 	}
 
 }

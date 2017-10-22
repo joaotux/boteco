@@ -44,7 +44,6 @@ public class Produto implements Serializable {
 	private Double valorVenda;
 
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@NotNull(message="Data é obrigatória")
 	private Date dataValidade;
 	private Double teorAlcoolico;
 

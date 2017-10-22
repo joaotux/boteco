@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.originmobi.boteco.filter.ProdutoFilter;
 import com.originmobi.boteco.model.Fornecedor;
 import com.originmobi.boteco.model.Produto;
 import com.originmobi.boteco.service.FornecedorService;
@@ -41,9 +42,9 @@ public class ProdutoController {
 	}
 	
 	@GetMapping
-	private ModelAndView pesquisar(){
+	private ModelAndView pesquisar(@ModelAttribute("filter") ProdutoFilter filter){
 		List<Produto> todosProdutos = new ArrayList<Produto>();
-		todosProdutos = produtoService.listar();
+		todosProdutos = produtoService.filter(filter);
 		
 		ModelAndView mv = new ModelAndView(VIEW_LISTA);
 		mv.addObject("produtos", todosProdutos);
