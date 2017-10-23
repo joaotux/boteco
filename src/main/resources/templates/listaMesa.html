@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+
+<section layout:fragment="listaMesa">
+	<div class="container-fluid">
+		<h2 id="titulo2">Mesas</h2>
+
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<tr>
+					<th>#</th>
+					<th class="text-center">Descrição</th>
+					<th class="text-center">Status</th>
+					<th></th>
+					<th></th>
+				</tr>
+				<tr th:each="mesa : ${mesas}">
+					<td th:text="${mesa.codigo}"></td>
+					<td class="text-center" th:text="${mesa.descricao}"></td>
+					<td class="text-center"><span class="label"
+						th:text="${mesa.mesaStatus.descricao}"
+						th:classappend="${mesa.mesaStatus.descricao} == 'Livre' ? 'label-success' : label-danger"></span></td>
+					<td><a th:href="@{/mesa/{codigo}(codigo=${mesa.codigo})}"><span
+							class="glyphicon glyphicon-pencil"></span></a></td>
+					<td><a
+						th:href="@{/mesa/excluir/{codigo}(codigo=${mesa.codigo})}"><span
+							class="glyphicon glyphicon-remove"></span></a></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</section>
+</html>

@@ -13,17 +13,17 @@
 			<div layout:include="mensagens/mensagemSucesso"></div>
 			<div layout:include="mensagens/mensagemErro"></div>
 			
-			<h2>Cliente</h2>
+			<h2 id="titulo2">Cliente</h2>
 				<input type="hidden" th:field="*{codigo}" />	
-				<div class="form-group">
+				<div class="form-group" th:classappend="${#fields.hasErrors('nome')} ? has-error">
 					<label for="nome">Nome</label>
 					<input id="nome" class="form-control" type="text" name="nome" placeholder="Nome" th:field="*{nome}" />
 				</div>
-				<div class="form-group">
+				<div class="form-group" th:classappend="${#fields.hasErrors('cpf')} ? has-error">
 					<label for="cpf">CPF</label>
 					<input class="form-control cpf" id="cpf" name="cpf" type="text" placeholder="000.000.000-00" th:field="*{cpf}" />
 				</div> 
-				<div class="form-group">
+				<div class="form-group" th:classappend="${#fields.hasErrors('dataNacimento')} ? has-error">
 					<label for="dataNacimento">Data Nacimento</label>
 					<input id="dataNacimento" class="form-control" name="dataNacimento" type="text" th:field="*{dataNacimento}" 
 					data-provide="datepicker" data-date-format="dd/mm/yyyy"

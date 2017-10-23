@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+
+<section layout:fragment="formMesa">
+
+	<section class="container">
+
+
+		<form th:action="@{/mesa}" method="POST" th:object="${mesa}">
+		<!-- Mensagens -->
+		<div layout:include="mensagens/mensagemSucesso"></div>	
+		<div layout:include="mensagens/mensagemErro"></div>	
+		
+		<h2 id="titulo2">Mesa</h2>
+			
+			<input type="hidden" th:field="*{codigo}" />
+			<div class="form-group" th:classappend="${#fields.hasErrors('descricao')} ? has-error">
+				<label for="descricao">Descrição</label> <input id="descricao"
+					class="form-control" type="text" name="descricao"
+					placeholder="Descrição" th:field="*{descricao}" />
+			</div>
+			<div class="form-group">
+				<label for="status">Status</label> <select class="form-control"
+					name="mesaStatus" th:field="*{mesaStatus}">
+					<option th:each="mesa: ${statusMesas}" th:value="${mesa}"
+						th:text="${mesa.descricao}"></option>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-warning">Salvar</button>
+		</form>
+	</section>
+</section>
+</html>

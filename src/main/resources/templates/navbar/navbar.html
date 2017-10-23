@@ -10,6 +10,10 @@
 				th:src="@{/images/beer.png}" /></a>
 
 			<div class="btn-group">
+				<a th:href="@{/}" class="btn btn-warning" role="button">Inicio</a>
+			</div>
+			
+			<div class="btn-group">
 				<button type="button" class="btn btn-warning dropdown-toggle"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Fornecedor <span class="caret"></span>
@@ -41,6 +45,18 @@
 				<ul class="dropdown-menu">
 					<li><a th:href="@{/cliente/formulario}">Cadastro</a></li>
 					<li><a th:href="@{/cliente}">Pesquisar</a></li>
+					<li role="separator" class="divider"></li>
+				</ul>
+			</div>
+			
+			<div class="btn-group">
+				<button type="button" class="btn btn-warning dropdown-toggle"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Mesa <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a th:href="@{/mesa/formulario}">Cadastro</a></li>
+					<li><a th:href="@{/mesa}">Pesquisar</a></li>
 					<li role="separator" class="divider"></li>
 				</ul>
 			</div>
