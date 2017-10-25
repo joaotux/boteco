@@ -1,8 +1,8 @@
-.navbar-brand{
+.navbar-brand {
 	padding-top: 9px;
 }
 
-.btn-group{
+.btn-group {
 	padding-top: 9px;
 }
 
@@ -13,16 +13,33 @@
 	color: orange;
 }
 
-#titulo2{
+#titulo2 {
 	text-align: center;
 }
 
-#paginaindex{
+#paginaindex {
 	background-color: black;
 }
 
-#titulo1{
+#titulo1 {
 	text-align: center;
 	color: orange;
 	padding-top: 18%
+}
+
+#cabeca-tabela {
+	background: orange;
+	color: black;
+	font-size: 1.2em;
+}
+
+#linha-tabela {
+	background: Lightgray;
+	color: black;
+}
+
+#menu-comanda {
+	margin-bottom:2%;
+	margin-right: 6%;
+	 	
 }

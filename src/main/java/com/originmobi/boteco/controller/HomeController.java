@@ -8,10 +8,16 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/")
 public class HomeController {
-	
+
 	@GetMapping
-	public ModelAndView index(){
+	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("index");
+		return mv;
+	}
+
+	@GetMapping("comandaLayout")
+	public ModelAndView comandaLayout() {
+		ModelAndView mv = new ModelAndView("comandaLayout");
 		return mv;
 	}
 

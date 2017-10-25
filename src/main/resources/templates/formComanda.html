@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+
+<section layout:fragment="formComanda">
+	<div class="container">
+
+		<form th:action="@{/comanda}" method="POST">
+			<div class="row">
+				<div class="col-md-2">
+					<div class="form-group">
+						<label for="codigo">Comanda</label> <input id="codigo"
+							class="form-control" name="codigo" type="text"
+							disabled="disabled" />
+					</div>
+				</div>
+				<div class="col-md-6"></div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<label for="status">Status</label> <select id="status"
+							class="form-control" name="status">
+							<option th:each="status : ${statusComanda}" th:value="${status}" th:text="${status}"></option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-8">
+					<div class="form-group">
+						<label for="cliente">Cliente</label> <select id="cliente"
+							class="form-control" name="cliente">
+							<option th:each="cliente : ${todosClientes}" th:value="${cliente.codigo}" th:text="${cliente.nome}"></option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<label for="credito">Crédito</label> <input id="credito"
+							class="form-control" name="credito" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-8">
+					<div class="form-group">
+						<label for="observacao">Observação</label> <input id="observacao"
+							class="form-control" type="text" name="observacao" />
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<label for="debito">Débito</label> <input id="debito"
+							class="form-control" type="text" name="debito" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-2">
+					<div class="form-group">
+						<label for="mesa">Mesa</label> <select id="mesa"
+							class="form-control" name="mesa">
+							<option selected="selected"></option>
+							<option th:each="mesa : ${todasMesas}" th:value="${mesa.codigo}" th:text="${mesa.descricao}"></option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</form>
+		<!-- fim form -->
+
+		<div class="row">
+			<div class="col-md-8">
+				<table class="table">
+					<tr id="cabeca-tabela">
+						<th>#</th>
+						<th>Descrição</th>
+						<th>Marca</th>
+						<th>Valor</th>
+					</tr>
+					<tr id="linha-tabela">
+						<td>12</td>
+						<td>Cerveja suja</td>
+						<td>Padrão</td>
+						<td>R$ 5,00</td>
+					</tr>
+					<tr id="linha-tabela">
+						<td>12</td>
+						<td>Cerveja suja</td>
+						<td>Padrão</td>
+						<td>R$ 5,00</td>
+					</tr>
+					<tr id="linha-tabela">
+						<td>12</td>
+						<td>Cerveja suja</td>
+						<td>Padrão</td>
+						<td>R$ 5,00</td>
+					</tr>
+					<tr id="linha-tabela">
+						<td>12</td>
+						<td>Cerveja suja</td>
+						<td>Padrão</td>
+						<td>R$ 5,00</td>
+					</tr>
+					<tr id="linha-tabela">
+						<td>12</td>
+						<td>Cerveja suja</td>
+						<td>Padrão</td>
+						<td>R$ 5,00</td>
+					</tr>
+				</table>
+			</div>
+			
+			<div class="col-md-2">
+				<button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalProduto"><span class="glyphicon glyphicon-plus-sign"></span></button>
+			</div>
+		</div>
+
+	<div layout:include="buscaProdutoComanda"></div>
+	</div>
+	
+</section>
+</html>
