@@ -16,9 +16,8 @@ public class HomeController {
 	}
 
 	@GetMapping("comandaLayout")
-	public ModelAndView comandaLayout() {
-		ModelAndView mv = new ModelAndView("comandaLayout");
-		return mv;
+	public String comandaLayout() {
+		return "comandaLayout";
 	}
 
 }

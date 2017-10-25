@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="txt/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<title>Boteco</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap-datepicker.standalone.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+
+	<header layout:include="navbar/navbar"></header>
+
+	<section layout:fragment="cadastroFornecedor"></section>
+	<section layout:fragment="listaFornecedor"></section>
+	<section layout:fragment="formProduto"></section>
+	<section layout:fragment="listaProdutos"></section>
+	<section layout:fragment="formCliente"></section>
+	<section layout:fragment="listaCliente"></section>
+	<section layout:fragment="formMesa"></section>
+	<section layout:fragment="listaMesa"></section>
+	<section layout:fragment="index"></section>
+	<section layout:fragment="comandaLayout"></section>
+	
+	<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+	<script th:src="@{/js/jquery.inputmask.bundle.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+	<script th:src="@{/js/bootstrap-datepicker.pt-BR.min.js}"></script>
+	<script th:src="@{/js/jquery.maskMoney.min.js}"></script>
+	<script th:src="@{/js/boteco.js}"></script>
+	<script>
+		
+	</script>
+</body>
+</html>
