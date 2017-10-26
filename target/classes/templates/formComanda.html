@@ -7,13 +7,15 @@
 <section layout:fragment="formComanda">
 	<div class="container">
 
-		<form th:action="@{/comanda}" method="POST">
+		<form th:action="@{/comanda}" method="POST" th:object="${comanda}">
+			<input type="hidden" th:field="*{codigo}" th:attr="codigo2=${codigo.codigo}"/>
+
 			<div class="row">
 				<div class="col-md-2">
 					<div class="form-group">
 						<label for="codigo">Comanda</label> <input id="codigo"
 							class="form-control" name="codigo" type="text"
-							disabled="disabled" />
+							disabled="disabled" th:field="*{codigo}" />
 					</div>
 				</div>
 				<div class="col-md-6"></div>
@@ -22,7 +24,7 @@
 						<label for="status">Status</label> <select id="status"
 							class="form-control" name="status">
 							<option th:each="status : ${statusComanda}" th:value="${status}"
-								th:text="${status}"></option>
+								th:text="${status}" th:field="*{status}"></option>
 						</select>
 					</div>
 				</div>
@@ -34,14 +36,15 @@
 						<label for="cliente">Cliente</label> <select id="cliente"
 							class="form-control" name="cliente">
 							<option th:each="cliente : ${todosClientes}"
-								th:value="${cliente.codigo}" th:text="${cliente.nome}"></option>
+								th:value="${cliente.codigo}" th:text="${cliente.nome}"
+								th:field="*{cliente}"></option>
 						</select>
 					</div>
 				</div>
 				<div class="col-md-2">
 					<div class="form-group">
 						<label for="credito">Crédito</label> <input id="credito"
-							class="form-control" name="credito" />
+							class="form-control" name="credito" th:field="*{credito}" />
 					</div>
 				</div>
 			</div>
@@ -50,13 +53,15 @@
 				<div class="col-md-8">
 					<div class="form-group">
 						<label for="observacao">Observação</label> <input id="observacao"
-							class="form-control" type="text" name="observacao" />
+							class="form-control" type="text" name="observacao"
+							th:field="*{observacao}" />
 					</div>
 				</div>
 				<div class="col-md-2">
 					<div class="form-group">
 						<label for="debito">Débito</label> <input id="debito"
-							class="form-control" type="text" name="debito" />
+							class="form-control" type="text" name="debito"
+							th:field="*{debito}" />
 					</div>
 				</div>
 			</div>
@@ -68,63 +73,20 @@
 							class="form-control" name="mesa">
 							<option selected="selected"></option>
 							<option th:each="mesa : ${todasMesas}" th:value="${mesa.codigo}"
-								th:text="${mesa.descricao}"></option>
+								th:text="${mesa.descricao}" th:field="*{mesa}"></option>
 						</select>
 					</div>
 				</div>
 			</div>
+
+			<div th:if="*{codigo} != null">
+			<div layout:include="comandaProdutos"></div>
+			</div>
+
+			<button type="submit" class="btn btn-warning">Salvar</button>
 		</form>
 		<!-- fim form -->
 
-		<div class="row">
-			<div class="col-md-8">
-				<table class="table">
-					<tr id="cabeca-tabela">
-						<th>#</th>
-						<th>Descrição</th>
-						<th>Marca</th>
-						<th>Valor</th>
-					</tr>
-					<tr id="linha-tabela">
-						<td>12</td>
-						<td>Cerveja suja</td>
-						<td>Padrão</td>
-						<td>R$ 5,00</td>
-					</tr>
-					<tr id="linha-tabela">
-						<td>12</td>
-						<td>Cerveja suja</td>
-						<td>Padrão</td>
-						<td>R$ 5,00</td>
-					</tr>
-					<tr id="linha-tabela">
-						<td>12</td>
-						<td>Cerveja suja</td>
-						<td>Padrão</td>
-						<td>R$ 5,00</td>
-					</tr>
-					<tr id="linha-tabela">
-						<td>12</td>
-						<td>Cerveja suja</td>
-						<td>Padrão</td>
-						<td>R$ 5,00</td>
-					</tr>
-					<tr id="linha-tabela">
-						<td>12</td>
-						<td>Cerveja suja</td>
-						<td>Padrão</td>
-						<td>R$ 5,00</td>
-					</tr>
-				</table>
-			</div>
-
-			<div class="col-md-2">
-				<button type="submit" class="btn btn-warning" data-toggle="modal"
-					data-target="#modalProduto">
-					<span class="glyphicon glyphicon-plus-sign"></span>
-				</button>
-			</div>
-		</div>
 
 		<div layout:include="buscaProdutoComanda"></div>
 	</div>

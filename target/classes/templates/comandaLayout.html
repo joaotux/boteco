@@ -6,11 +6,11 @@
 
 <section layout:fragment="comandaLayout">
 	<div class="container" id="menu-comanda">
-			<button type="button" class="btn btn-warning">Comanda
-				Abertas</button>
+			<a th:href="@{/comanda}" class="btn btn-warning">Comandas</a>
 			<a th:href="@{/comanda/formulario}" class="btn btn-warning">Nova Comanda</a>
 	</div>
 	
+	<div layout:fragment="listaComanda"></div>
 	<div layout:fragment="formComanda"></div>
 </section>
 

@@ -43,12 +43,12 @@ public class Comanda implements Serializable {
 	@JoinTable(name = "comanda_produtos")
 	private List<Produto> produto;
 
-	public Long getOdigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
 
-	public void setOdigo(Long odigo) {
-		this.codigo = odigo;
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
 	}
 
 	public Double getCredito() {

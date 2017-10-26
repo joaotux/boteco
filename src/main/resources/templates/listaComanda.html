@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="comandaLayout">
+
+	<section layout:fragment="listaComanda">
+		
+		<div class="container">
+			<h1>Comandas</h1>
+			
+			<table class="table">
+				<tr>
+					<th>#</th>
+					<th>Cliente</th>
+					<th>Crédito</th>
+					<th>Obs</th>
+					<th>Mesa</th>
+					<th></th>
+					<th></th>
+				</tr>
+				<tr th:each="comanda : ${comandas}">
+					<td th:text="${comanda.codigo}"></td>
+					<td th:text="${comanda.cliente.nome}"></td>
+					<td th:text="${comanda.credito}"></td>
+					<td th:text="${comanda.observacao}"></td>
+					<td th:text="${!#lists.isEmpty(comanda.mesa)} ? ${comanda.mesa.descricao} : 'Sem mesa'"></td>
+					<td><a th:href="@{/comanda/{codigo}(codigo=${comanda.codigo})}">Abrir</a></td>
+					<td><a th:href="@{/comanda/excluir/{codigo}(codigo=${comanda.codigo})}">Excluir</a></td>
+				</tr>
+			</table>
+		</div>
+		
+	</section>
+
+</html>
