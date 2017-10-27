@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.originmobi.boteco.enumerados.ComandaStatus;
@@ -38,7 +41,7 @@ public class ComandaController {
 
 	@Autowired
 	private MesaService mesaService;
-	
+
 	@Autowired
 	private ProdutoService produtoService;
 
@@ -54,6 +57,13 @@ public class ComandaController {
 	public String novo(Comanda comanda) {
 		comandaService.cadastrar(comanda);
 
+		return "redirect:/comanda/formulario";
+	}
+
+	@RequestMapping(value = "/novoProduto", method = RequestMethod.POST)
+	public @ResponseBody String novoProduto(@RequestParam("codigoComanda") String comanda) {
+		System.out.println("codigoComanda " + comanda);
+		//System.out.println("codigoProduto " + codigoProduto);
 		return "redirect:/comanda/formulario";
 	}
 
@@ -73,9 +83,9 @@ public class ComandaController {
 		mv.addObject("comanda", comanda);
 		return mv;
 	}
-	
+
 	@GetMapping("/excluir/{codigo}")
-	public String remover(@PathVariable("codigo") Long codigo){
+	public String remover(@PathVariable("codigo") Long codigo) {
 		comandaService.excluir(codigo);
 		return "redirect:/comanda";
 	}
@@ -96,9 +106,9 @@ public class ComandaController {
 	public List<Mesa> todasMesas() {
 		return this.mesaService.lista();
 	}
-	
+
 	@ModelAttribute("todosProdutos")
-	public List<Produto> todosProdutos(){
+	public List<Produto> todosProdutos() {
 		return this.produtoService.listar();
 	}
 
