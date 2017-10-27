@@ -3,6 +3,7 @@ package com.originmobi.boteco.controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,11 +61,11 @@ public class ComandaController {
 		return "redirect:/comanda/formulario";
 	}
 
-	@RequestMapping(value = "/novoProduto", method = RequestMethod.POST)
-	public @ResponseBody String novoProduto(@RequestParam("codigoComanda") String comanda) {
-		System.out.println("codigoComanda " + comanda);
-		//System.out.println("codigoProduto " + codigoProduto);
-		return "redirect:/comanda/formulario";
+	@RequestMapping(value = "/novoProduto", method = RequestMethod.PUT)
+	public @ResponseBody String insereProduto(@RequestParam Map<String, String> requestParam) {
+		System.out.println("codigo codigoComanda " + requestParam.get("codigoComanda"));
+		System.out.println("codigo codigoProduto " + requestParam.get("codigoProduto"));
+		return "OK";
 	}
 
 	@GetMapping

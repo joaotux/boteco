@@ -5,38 +5,30 @@ $(function() {
 	$("input[id*='cnpj']").inputmask({mask: ['99.999.999/9999-99'], keepStatic: true});
 	
 	$('.js-add-produto').on('click', function(event) {
-		alert("produto " + $("#produtos").val() + " comanda "+ $("#codigoComanda").attr("comandaCodigo") + " url " + $("#js-url").attr("href"));
+		event.preventDefault();
+		
+		console.log("clicou");
 		
 		var codigoComanda = $("#codigoComanda").attr("comandaCodigo");
-		var codigoProduto = $("#produtos").val();
+		//var codigoProduto = $("#produtos").val();
 		var url = $("#js-url").attr("href");
 		
-		$.ajax({
-			type: 'POST',
+		var response = $.ajax({
 			url: url,
-			data: codigoComanda,
-			success: seccess,
-			dataType: dataType
+			type: 'PUT'
 		});
+		
+		response.done(function(e) {
+			console.log("clicou 1");
+		});
+		
+		response.fail(function(e) {
+			console.log(e);
+		});
+		
 	});
 });
 
 $('#modalProduto').on('shown.bs.modal', function () {
   $('#myInput').focus()
 });
-
-/**
- $.ajax({
-			
-			data: {
-				comanda: codigoComanda, 
-				produto: codigoProduto
-			}
-			
-			type: 'POST',
-			url: url,
-			data: data,
-			success: seccess,
-			dataType: dataType
-		});
-**/
