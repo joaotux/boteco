@@ -79,43 +79,35 @@
 				</div>
 			</div>
 
-			<select name="produto" multiple="multiple">
-				<option th:each="produto : ${todosProdutos}"
-					th:value="${produto.codigo}" th:text="${produto.descricao}"></option>
-			</select>
-
-			<!-- 
-			<div th:if="*{codigo} != null">
-				<div layout:include="comandaProdutos"></div>
+			<div th:if="!*{credito}">
+				<button type="submit" class="btn btn-warning">Salvar</button>
 			</div>
-			 -->
-
-			<button type="submit" class="btn btn-warning">Salvar</button>
 		</form>
-		<!-- fim form -->
+		<!-- fim form 01-->
 
 		<form th:action="@{/comanda/novoProduto}" method="POST"
 			th:object="${comanda}">
-			<input id="codigoComanda" type="hidden" th:field="*{codigo}"
-				th:attr="comandaCodigo=${comanda.codigo}" /> <input type="hidden"
-				th:field="*{status}" /> <input type="hidden" th:field="*{cliente}" />
-			<input type="hidden" th:field="*{credito}" /> <input type="hidden"
-				th:field="*{observacao}" /> <input type="hidden"
-				th:field="*{debito}" /> <input type="hidden" th:field="*{mesa}" />
-			<div class="row">
-				<div class="col-md-10">
-					<div class="form-group">
-						<label for="produtos">Produtos</label> <select id="produtos"
-							name="produto" class="form-control" th:field="*{produto}">
-							<option th:each="produto : ${todosProdutos}"
-								th:text="${produto.descricao}" th:value="${produto.codigo}"></option>
-						</select>
+
+			<div th:if="*{codigo}">
+				<div class="row">
+					<div class="col-md-8">
+						<div class="form-group">
+							<label for="produtos">Produtos</label> <select id="produtos"
+								name="produto" class="form-control" th:field="*{produto}">
+								<option th:each="produto : ${todosProdutos}"
+									th:text="${produto.descricao}" th:value="${produto.codigo}"></option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="form-group">
+							<a
+								th:href="@{/comanda/novoProduto/(codigoComanda=${comanda.codigo},codigoProduto=)}"
+								class="btn btn-warning form-control js-add-produto" id="js-url">Inserir</a>
+						</div>
 					</div>
 				</div>
 			</div>
-			<a
-				th:href="@{/comanda/novoProduto/(codigoComanda=1,codigoProduto=2)}"
-				class="btn btn-success js-add-produto" id="js-url">Inserir JS</a>
 		</form>
 
 

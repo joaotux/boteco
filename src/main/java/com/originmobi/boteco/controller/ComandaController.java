@@ -65,6 +65,28 @@ public class ComandaController {
 	public @ResponseBody String insereProduto(@RequestParam Map<String, String> requestParam) {
 		System.out.println("codigo codigoComanda " + requestParam.get("codigoComanda"));
 		System.out.println("codigo codigoProduto " + requestParam.get("codigoProduto"));
+		
+		Long codigoComanda = Long.decode(requestParam.get("codigoComanda"));
+		Long codigoProduto = Long.decode(requestParam.get("codigoProduto"));
+		
+		Comanda comanda = comandaService.pesquisarId(codigoComanda);
+		Produto produto = produtoService.pesquisaId(codigoProduto);
+		
+		System.out.println("Codigo " + comanda.getCodigo());
+		System.out.println("Credito " + comanda.getCredito());
+		System.out.println("Credito " + comanda.getProduto());
+		
+		System.out.println(" ----------------------------- ");
+		System.out.println("Codigo " + produto.getCodigo());
+		System.out.println("Descrição " + produto.getDescricao());
+		
+		List<Produto> produtos = new ArrayList<Produto>();
+		produtos.add(produto);
+		
+		comanda.getProduto().add(produto);
+		comandaService.cadastrar(comanda);
+		
+		
 		return "OK";
 	}
 

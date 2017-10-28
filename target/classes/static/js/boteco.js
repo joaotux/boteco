@@ -7,10 +7,15 @@ $(function() {
 	$('.js-add-produto').on('click', function(event) {
 		event.preventDefault();
 		
-		console.log("clicou");
-		
 		var codigoComanda = $("#codigoComanda").attr("comandaCodigo");
-		//var codigoProduto = $("#produtos").val();
+		var codigoProduto = $("#produtos").val();
+		var linkComanda = $("#js-url").attr("href");
+		var linknovo = linkComanda + codigoProduto.toString();
+		
+		$('href')append(linknovo);
+		
+		console.log("link " + linknovo);
+		
 		var url = $("#js-url").attr("href");
 		
 		var response = $.ajax({
@@ -19,7 +24,7 @@ $(function() {
 		});
 		
 		response.done(function(e) {
-			console.log("clicou 1");
+			
 		});
 		
 		response.fail(function(e) {
