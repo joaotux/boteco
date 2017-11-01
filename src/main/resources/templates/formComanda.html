@@ -42,7 +42,7 @@
 					</div>
 				</div>
 				<div class="col-md-2">
-					<div class="form-group">
+					<div class="form-group" id="credito-comanda">
 						<label for="credito">Crédito</label> <input id="credito"
 							class="form-control" name="credito" th:field="*{credito}" />
 					</div>
@@ -58,10 +58,10 @@
 					</div>
 				</div>
 				<div class="col-md-2">
-					<div class="form-group">
+					<div class="form-group" id="debito-comanda">
 						<label for="debito">Débito</label> <input id="debito"
 							class="form-control" type="text" name="debito"
-							th:field="*{debito}" />
+							th:field="*{debito}" disabled="disabled" />
 					</div>
 				</div>
 			</div>
@@ -79,7 +79,7 @@
 				</div>
 			</div>
 
-			<div th:if="!*{credito}">
+			<div th:if="!*{codigo}">
 				<button type="submit" class="btn btn-warning">Salvar</button>
 			</div>
 		</form>
@@ -93,13 +93,14 @@
 					<div class="col-md-8">
 						<div class="form-group">
 							<label for="produtos">Produtos</label> <select id="produtos"
-								name="produto" class="form-control" th:field="*{produto}">
+								name="produto" class="form-control selectpicker" th:field="*{produto}" data-live-search="true">
 								<option th:each="produto : ${todosProdutos}"
 									th:text="${produto.descricao}" th:value="${produto.codigo}"></option>
 							</select>
 						</div>
 					</div>
 					<div class="col-md-2">
+					<label></label>
 						<div class="form-group">
 							<a
 								th:href="@{/comanda/novoProduto/(codigoComanda=${comanda.codigo},codigoProduto=)}"
@@ -107,11 +108,11 @@
 						</div>
 					</div>
 				</div>
+				<div layout:include="comandaProdutos" id="tabela-produtos"></div>
+				
 			</div>
 		</form>
-
-
-		<div layout:include="buscaProdutoComanda"></div>
+		
 	</div>
 </section>
 </html>

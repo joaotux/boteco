@@ -10,27 +10,27 @@ $(function() {
 		var codigoComanda = $("#codigoComanda").attr("comandaCodigo");
 		var codigoProduto = $("#produtos").val();
 		var linkComanda = $("#js-url").attr("href");
-		var linknovo = linkComanda + codigoProduto.toString();
+		var linknovo = linkComanda + "=" + codigoProduto.toString();
 		
-		$('href')append(linknovo);
-		
-		console.log("link " + linknovo);
-		
-		var url = $("#js-url").attr("href");
+		$('href').append(linknovo);
 		
 		var response = $.ajax({
-			url: url,
+			url: linknovo,
 			type: 'PUT'
 		});
 		
 		response.done(function(e) {
+			$("#tabela-produtos").load(" #tabela-produtos");
+			$("#debito-comanda").load(" #debito-comanda");
+			$("#credito-comanda").load(" #credito-comanda");
 			
+			if (e == "credito insuficiente")
+				alert(e)
 		});
 		
 		response.fail(function(e) {
 			console.log(e);
 		});
-		
 	});
 });
 

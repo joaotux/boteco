@@ -33,6 +33,7 @@ public class ComandaController {
 
 	private static final String VIEW_FORM = "formComanda";
 	private static final String VIEW_LIST = "listaComanda";
+	private static final String VIEW_PROD_COMANDA = "comandaProdutos";
 
 	@Autowired
 	private ComandaService comandaService;
@@ -62,32 +63,12 @@ public class ComandaController {
 	}
 
 	@RequestMapping(value = "/novoProduto", method = RequestMethod.PUT)
-	public @ResponseBody String insereProduto(@RequestParam Map<String, String> requestParam) {
-		System.out.println("codigo codigoComanda " + requestParam.get("codigoComanda"));
-		System.out.println("codigo codigoProduto " + requestParam.get("codigoProduto"));
-		
+	public @ResponseBody String insereProduto(@RequestParam Map<String, String> requestParam){
 		Long codigoComanda = Long.decode(requestParam.get("codigoComanda"));
 		Long codigoProduto = Long.decode(requestParam.get("codigoProduto"));
 		
-		Comanda comanda = comandaService.pesquisarId(codigoComanda);
-		Produto produto = produtoService.pesquisaId(codigoProduto);
-		
-		System.out.println("Codigo " + comanda.getCodigo());
-		System.out.println("Credito " + comanda.getCredito());
-		System.out.println("Credito " + comanda.getProduto());
-		
-		System.out.println(" ----------------------------- ");
-		System.out.println("Codigo " + produto.getCodigo());
-		System.out.println("Descrição " + produto.getDescricao());
-		
-		List<Produto> produtos = new ArrayList<Produto>();
-		produtos.add(produto);
-		
-		comanda.getProduto().add(produto);
-		comandaService.cadastrar(comanda);
-		
-		
-		return "OK";
+        return comandaService.adicionaProdutoComanda(codigoComanda, codigoProduto);
+
 	}
 
 	@GetMapping
@@ -111,6 +92,13 @@ public class ComandaController {
 	public String remover(@PathVariable("codigo") Long codigo) {
 		comandaService.excluir(codigo);
 		return "redirect:/comanda";
+	}
+
+	@GetMapping("/produtosComanda/{codigo}")
+	public ModelAndView produtosDaComanda(@PathVariable("codigo") Comanda comanda) {
+		ModelAndView mv = new ModelAndView(VIEW_PROD_COMANDA);
+		mv.addObject("comanda", comanda);
+		return mv;
 	}
 
 	@ModelAttribute("statusComanda")
