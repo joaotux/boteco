@@ -8,7 +8,7 @@
 	<div class="container">
 
 		<form th:action="@{/comanda}" method="POST" th:object="${comanda}">
-			<input type="hidden" th:field="*{codigo}" />
+			<input type="hidden" th:field="*{codigo}" id="codigoDaComanda"/>
 
 			<div class="row">
 				<div class="col-md-2">
@@ -34,7 +34,7 @@
 				<div class="col-md-8">
 					<div class="form-group">
 						<label for="cliente">Cliente</label> <select id="cliente"
-							class="form-control" name="cliente">
+							class="form-control cliente-habilitado" name="cliente">
 							<option th:each="cliente : ${todosClientes}"
 								th:value="${cliente.codigo}" th:text="${cliente.nome}"
 								th:field="*{cliente}"></option>
@@ -44,8 +44,10 @@
 				<div class="col-md-2">
 					<div class="form-group" id="credito-comanda">
 						<label for="credito">Crédito</label> <input id="credito"
-							class="form-control" name="credito" th:field="*{credito}" />
+							class="form-control js-currency credito-habilidato" name="credito" th:field="*{credito}"/>
 					</div>
+					
+					<a class="btn btn-link" data-toggle="modal" data-target=".modal-credito-comanda"><span class="glyphicon glyphicon-plus"></span></a>
 				</div>
 			</div>
 
@@ -53,7 +55,7 @@
 				<div class="col-md-8">
 					<div class="form-group">
 						<label for="observacao">Observação</label> <input id="observacao"
-							class="form-control" type="text" name="observacao"
+							class="form-control observacao-habilitado" type="text" name="observacao"
 							th:field="*{observacao}" />
 					</div>
 				</div>
@@ -69,19 +71,25 @@
 			<div class="row">
 				<div class="col-md-2">
 					<div class="form-group">
-						<label for="mesa">Mesa</label> <select id="mesa"
-							class="form-control" name="mesa">
+						<label for="mesa">Mesa</label> 
+						<select id="mesa"
+							class="form-control mesa-habilitada" name="mesa">
 							<option selected="selected"></option>
 							<option th:each="mesa : ${todasMesas}" th:value="${mesa.codigo}"
 								th:text="${mesa.descricao}" th:field="*{mesa}"></option>
 						</select>
 					</div>
 				</div>
+				<div class="col-md-2 col-md-offset-6">
+				<div class="form-group">
+					<label id="linhaInvisivel">.</label>
+					<div th:if="!*{codigo}">
+						<button type="submit" class="btn btn-warning form-control">Salvar</button>
+					</div>
+				</div>
+				</div>
 			</div>
 
-			<div th:if="!*{codigo}">
-				<button type="submit" class="btn btn-warning">Salvar</button>
-			</div>
 		</form>
 		<!-- fim form 01-->
 
@@ -93,14 +101,14 @@
 					<div class="col-md-8">
 						<div class="form-group">
 							<label for="produtos">Produtos</label> <select id="produtos"
-								name="produto" class="form-control selectpicker" th:field="*{produto}" data-live-search="true">
+								name="produto" class="form-control selectpicker produtos-habilitado" th:field="*{produto}" data-live-search="true">
 								<option th:each="produto : ${todosProdutos}"
 									th:text="${produto.descricao}" th:value="${produto.codigo}"></option>
 							</select>
 						</div>
 					</div>
 					<div class="col-md-2">
-					<label></label>
+					<label id="linhaInvisivel">.</label>
 						<div class="form-group">
 							<a
 								th:href="@{/comanda/novoProduto/(codigoComanda=${comanda.codigo},codigoProduto=)}"
@@ -108,7 +116,10 @@
 						</div>
 					</div>
 				</div>
+				
 				<div layout:include="comandaProdutos" id="tabela-produtos"></div>
+				
+				<div layout:include="modalCreditoComanda"></div>
 				
 			</div>
 		</form>

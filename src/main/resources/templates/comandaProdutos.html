@@ -4,23 +4,27 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="comandaLayout">
 
-	<section layout:fragment="comandaProdutos">
+<section layout:fragment="comandaProdutos">
 		<div class="row">
-		<div class="col-md-10">
-			<table class="table table-striped tabela-produtos-comanda">
-				<tr>
-					<th>#</th>
-					<th>Descrição</th>
-					<th>Valor</th>
-				</tr>
-				<tr th:each="produto : ${comanda.produto}">
-					<td th:text="${produto.codigo}"></td>
-					<td th:text="${produto.descricao}"></td>
-					<td th:text="|R$ ${{produto.valorVenda}}|"></td>
-				</tr>
-			</table>
+			<div class="col-md-10">
+				<table class="table table-fixed tabela-produtos-comanda">
+					<thead>
+						<tr>
+							<th class="col-xs-1">#</th>
+							<th class="col-xs-8">Descrição</th>
+							<th class="col-xs-3">Valor</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="produto : ${comanda.produto}">
+							<td class="col-xs-1" th:text="${produto.codigo}"></td>
+							<td class="col-xs-8" th:text="${produto.descricao}"></td>
+							<td class="col-xs-3" th:text="|R$ ${{produto.valorVenda}}|"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
-	</div>
-	</section>
+</section>
 
 </html>

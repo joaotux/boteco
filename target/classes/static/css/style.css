@@ -39,9 +39,39 @@
 }
 
 #menu-comanda {
-	margin-bottom:2%;
+	margin-bottom: 2%;
 }
 
-.tabela-produtos-comanda{
-	margin-top: 2%;
+#linhaInvisivel {
+	color: #bdc3c7
 }
+
+body {
+  background-color: #bdc3c7;
+}
+
+.table-fixed {
+  width: 100%;
+  background-color: #f3f3f3;
+}
+.table-fixed tbody {
+  height: 400px;
+  overflow-y: auto;
+  width: 100%;
+}
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tr,
+.table-fixed td,
+.table-fixed th {
+  display: block;
+}
+.table-fixed tbody td {
+  float: left;
+}
+.table-fixed thead tr th {
+  float: left;
+  background-color: #f39c12;
+  border-color: #e67e22;
+}
+

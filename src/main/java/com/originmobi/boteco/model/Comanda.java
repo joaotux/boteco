@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import com.originmobi.boteco.enumerados.ComandaStatus;
 
 @Entity
@@ -24,7 +26,11 @@ public class Comanda implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long codigo;
+	
+	@NumberFormat(pattern = "#,##0.00")
 	private Double credito;
+	
+	@NumberFormat(pattern = "#,##0.00")
 	private Double debito;
 
 	@Enumerated(EnumType.STRING)

@@ -57,6 +57,10 @@ public class ComandaController {
 
 	@PostMapping
 	public String novo(Comanda comanda) {
+		System.out.println(comanda.getCliente());
+		System.out.println(comanda.getCredito());
+		System.out.println(comanda.getDebito());
+		System.out.println(comanda.getProduto());
 		comandaService.cadastrar(comanda);
 
 		return "redirect:/comanda/formulario";
@@ -99,6 +103,16 @@ public class ComandaController {
 		ModelAndView mv = new ModelAndView(VIEW_PROD_COMANDA);
 		mv.addObject("comanda", comanda);
 		return mv;
+	}
+	
+	@RequestMapping(value = "/creditar", method = RequestMethod.PUT)
+	public @ResponseBody String creditarComanda (@RequestParam Map<String, String> requestParam) {
+		Long codigo_comanda = Long.decode(requestParam.get("codigoComanda"));
+		Double credito = Double.valueOf(requestParam.get("credito"));
+		
+		comandaService.creditar(codigo_comanda, credito);
+		
+		return "ok";
 	}
 
 	@ModelAttribute("statusComanda")

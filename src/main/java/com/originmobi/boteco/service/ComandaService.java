@@ -35,44 +35,44 @@ public class ComandaService {
 		return comandas.findOne(codigo);
 	}
 
-	/*
-	 * Responsável por adicionar os produtos em uma comanda.
-	 * 
-	 */
 	public String adicionaProdutoComanda(Long codigo_comanda, Long codigo_produto) {
 		Comanda comanda = pesquisaComandaId(codigo_comanda);
 		Produto produto = produtos.pesquisaId(codigo_produto);
 
 		if (ComandaStatus.CANCELADA.equals(comanda.getStatus())) {
-			System.out.println("Comanda cancelada");
 			return "Comanda cancelada";
 		}
-		
+
 		if (comanda.getCredito() == null)
 			return "Crédito null";
 
 		if (comanda.getCredito() >= produto.getValorVenda()) {
 			Double creditoAtual, debitoAtual, valorProduto;
-			
+
 			valorProduto = produto.getValorVenda();
 			creditoAtual = comanda.getCredito();
 			debitoAtual = comanda.getDebito() == null ? 0.00 : comanda.getDebito();
-			
-			System.out.println("Valor de crédito suficiente!");
-
-			System.out.println("credito comanda " + comanda.getCredito());
-			System.out.println("valor produto " + produto.getValorVenda());
 
 			comanda.setCredito(creditoAtual - valorProduto);
 			comanda.setDebito(debitoAtual + valorProduto);
 			comanda.getProduto().add(produto);
-			
+
 			cadastrar(comanda);
-			
+
 			return "ok";
 		} else {
 			return "credito insuficiente";
 		}
+	}
+
+	public void creditar(Long codigo_comanda, Double credito) {
+		Comanda comanda = comandas.findOne(codigo_comanda);
+
+		Double creditoAtual = comanda.getCredito();
+
+		comanda.setCredito(creditoAtual + credito);
+
+		comandas.save(comanda);
 	}
 
 }

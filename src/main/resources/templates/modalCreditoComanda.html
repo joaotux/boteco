@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+
+<div class="modal fade modal-credito-comanda" tabindex="-1" role="dialog"
+	aria-labelledby="mySmallModalLabel">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<form action="">
+				<div class="form-group">
+					<label for="credito-comanda-modal">Crédito</label>
+					<input id="credito-comanda-modal" class="form-control js-currency credito-comanda-modal" type="text" placeholder="Valor crédito" />
+				</div>
+				<a class="btn btn-link add-credito-comanda" th:href="@{/comanda/creditar/(codigoComanda)}"><span class="glyphicon glyphicon-ok"></span></a>
+			</form>
+		</div>
+	</div>
+</div>
+</html>
+
+
