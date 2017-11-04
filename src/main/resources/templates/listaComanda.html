@@ -9,23 +9,22 @@
 		<div class="container">
 			<h1>Comandas</h1>
 			
-			<table class="table">
+			<table class="table table-hover">
 				<tr>
 					<th></th>
-					<th>#</th>
-					<th>Cliente</th>
-					<th>Crédito</th>
-					<th>Obs</th>
-					<th>Mesa</th>
+					<th class="text-center">Comanda</th>
+					<th class="text-rigth">Cliente</th>
+					<th class="text-center">Crédito</th>
+					<th class="text-center">Mesa</th>
+					<th></th>
 					<th></th>
 				</tr>
 				<tr th:each="comanda : ${comandas}">
-					<td><img alt="mesa"
-					th:src="@{/images/mesa.png}" class="img-responsive" width="70px"/></td>
-					<td th:text="${comanda.codigo}"></td>
-					<td th:text="${!#lists.isEmpty(comanda.mesa)} ? ${comanda.mesa.descricao} : 'Sem mesa'"></td>
-					<td th:text="${comanda.cliente.nome}"></td>
-					<td th:text="${comanda.observacao}"></td>
+					<td><img alt="mesa" th:src="@{/images/mesabeer.png}" class="img-responsive" width="60px"/></td>
+					<td class="text-center" th:text="${comanda.codigo}"></td>
+					<td class="text-rigth" th:text="${comanda.cliente.nome}"></td>
+					<td class="text-center" th:text="|R$ ${{comanda.credito}}|"></td>
+					<td class="text-center" th:text="${!#lists.isEmpty(comanda.mesa)} ? ${comanda.mesa.descricao} : 'Sem mesa'"></td>
 					<td><a th:href="@{/comanda/{codigo}(codigo=${comanda.codigo})}"><span class="glyphicon glyphicon-ok"></span></a></td>
 					<td><a th:href="@{/comanda/excluir/{codigo}(codigo=${comanda.codigo})}"><span class="glyphicon glyphicon-remove"></span></a></td>
 				</tr>
