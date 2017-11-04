@@ -26,8 +26,7 @@
 							<option th:each="status : ${statusComanda}" th:value="${status}"
 								th:text="${status}" th:field="*{status}"></option>
 						</select>
-						
-						<a class="btn btn-link cancelar-comanda" th:href="@{/comanda/cancelar/{codigo}(codigo=*{codigo})}"><span class="glyphicon glyphicon-remove"></span></a>
+						<a class="btn btn-danger btn-xs cancelar-comanda" th:href="@{/comanda/cancelar/{codigo}(codigo=*{codigo})}"><span class="glyphicon glyphicon-remove"> Cancelar</span></a>
 					</div>
 				</div>
 			</div>

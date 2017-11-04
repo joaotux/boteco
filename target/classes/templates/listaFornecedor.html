@@ -36,9 +36,9 @@
 					<td th:text="${fornecedor.nome}"></td>
 					<td th:text="${fornecedor.cnpj}"></td>
 					<td><a
-						th:href="@{/fornecedor/{codigo}(codigo=${fornecedor.codigo})}">Editar</a></td>
+						th:href="@{/fornecedor/{codigo}(codigo=${fornecedor.codigo})}"><span class="glyphicon glyphicon-ok"></span></a></td>
 					<td><a
-						th:href="@{/fornecedor/excluir/{codigo}(codigo=${fornecedor.codigo})}">Excluir</a></td>
+						th:href="@{/fornecedor/excluir/{codigo}(codigo=${fornecedor.codigo})}"><span class="glyphicon glyphicon-remove"></span></a></td>
 				</tr>
 				<tr>
 					<td colspan="5" th:if="${#lists.isEmpty(fornecedores)}">
