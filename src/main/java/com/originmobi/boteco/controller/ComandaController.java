@@ -57,21 +57,17 @@ public class ComandaController {
 
 	@PostMapping
 	public String novo(Comanda comanda) {
-		System.out.println(comanda.getCliente());
-		System.out.println(comanda.getCredito());
-		System.out.println(comanda.getDebito());
-		System.out.println(comanda.getProduto());
 		comandaService.cadastrar(comanda);
 
 		return "redirect:/comanda/formulario";
 	}
 
 	@RequestMapping(value = "/novoProduto", method = RequestMethod.PUT)
-	public @ResponseBody String insereProduto(@RequestParam Map<String, String> requestParam){
+	public @ResponseBody String insereProduto(@RequestParam Map<String, String> requestParam) {
 		Long codigoComanda = Long.decode(requestParam.get("codigoComanda"));
 		Long codigoProduto = Long.decode(requestParam.get("codigoProduto"));
-		
-        return comandaService.adicionaProdutoComanda(codigoComanda, codigoProduto);
+
+		return comandaService.adicionaProdutoComanda(codigoComanda, codigoProduto);
 
 	}
 
@@ -104,13 +100,18 @@ public class ComandaController {
 		mv.addObject("comanda", comanda);
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/creditar", method = RequestMethod.PUT)
-	public @ResponseBody String creditarComanda (@RequestParam Map<String, String> requestParam) {
+	public @ResponseBody String creditarComanda(@RequestParam Map<String, String> requestParam) {
 		Long codigo_comanda = Long.decode(requestParam.get("codigoComanda"));
 		Double credito = Double.valueOf(requestParam.get("credito"));
-		
-		comandaService.creditar(codigo_comanda, credito);
+
+		return comandaService.creditar(codigo_comanda, credito);
+	}
+
+	@RequestMapping(value = "/cancelar/{codigo}", method = RequestMethod.POST)
+	public @ResponseBody String cancelarComanda(@PathVariable("codigo") Long codigo) {
+		comandaService.cancelar(codigo);
 		
 		return "ok";
 	}

@@ -65,13 +65,29 @@ public class ComandaService {
 		}
 	}
 
-	public void creditar(Long codigo_comanda, Double credito) {
+	public String creditar(Long codigo_comanda, Double credito) {
+		
 		Comanda comanda = comandas.findOne(codigo_comanda);
 
+		if (ComandaStatus.CANCELADA.equals(comanda.getStatus())) {
+			return "Comanda cancelada";
+		}
+		
 		Double creditoAtual = comanda.getCredito();
 
 		comanda.setCredito(creditoAtual + credito);
 
+		comandas.save(comanda);
+		
+		return "ok";
+	}
+
+	public void cancelar(Long codigo) {
+		Comanda comanda;
+
+		comanda = comandas.findOne(codigo);
+
+		comanda.setStatus(ComandaStatus.CANCELADA);
 		comandas.save(comanda);
 	}
 

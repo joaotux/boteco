@@ -7,7 +7,7 @@
 <section layout:fragment="formComanda">
 	<div class="container">
 
-		<form th:action="@{/comanda}" method="POST" th:object="${comanda}">
+		<form th:action="@{/comanda}" method="POST" th:object="${comanda}" id="formComanda">
 			<input type="hidden" th:field="*{codigo}" id="codigoDaComanda"/>
 
 			<div class="row">
@@ -26,6 +26,8 @@
 							<option th:each="status : ${statusComanda}" th:value="${status}"
 								th:text="${status}" th:field="*{status}"></option>
 						</select>
+						
+						<a class="btn btn-link cancelar-comanda" th:href="@{/comanda/cancelar/{codigo}(codigo=*{codigo})}"><span class="glyphicon glyphicon-remove"></span></a>
 					</div>
 				</div>
 			</div>
@@ -45,9 +47,8 @@
 					<div class="form-group" id="credito-comanda">
 						<label for="credito">Crédito</label> <input id="credito"
 							class="form-control js-currency credito-habilidato" name="credito" th:field="*{credito}"/>
-					</div>
-					
 					<a class="btn btn-link" data-toggle="modal" data-target=".modal-credito-comanda"><span class="glyphicon glyphicon-plus"></span></a>
+					</div>					
 				</div>
 			</div>
 

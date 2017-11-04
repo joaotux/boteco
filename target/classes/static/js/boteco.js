@@ -89,6 +89,10 @@ $(function() {
 				});
 
 				response.done(function(e) {
+					
+					if(e == 'Comanda cancelada')
+						alert("Comanda cancelada!");
+					
 					$("#credito-comanda").load(" #credito-comanda");
 					$(".credito-comanda-modal").val("");
 					$(".modal-credito-comanda").modal('toggle');
@@ -104,4 +108,24 @@ $(function() {
 		valor = valor.toString().replace(/(\d)(\d{2})$/, "$1.$2");
 		return valor
 	}
+	
+	$('.cancelar-comanda').on('click', function(event) {
+		event.preventDefault();
+		
+		var link = $('.cancelar-comanda').attr('href');
+		
+		var response = $.ajax({
+			url: link,
+			type: 'POST'
+		});
+		
+		response.done(function(e) {
+			alert("Comanda cancelada com sucesso!");
+			$('#formComanda').load(" #formComanda");
+		});
+		
+		response.fail(function(e) {
+			alert("Erro ao cancelar comanda!");
+		});
+	});
 });
